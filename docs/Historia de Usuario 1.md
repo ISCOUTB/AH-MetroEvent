@@ -8,17 +8,17 @@ Como **cliente**, quero poder visualizar y rellenar el formulario de registro pa
 
 **1. La interfaz debe mostrar un formulario de registro con los siguientes campos obligatorios:**
 
-        - Correo electrónico
-        - Contraseña
-        - Nombre de usuario
-        - Dirección
+   - Correo electrónico
+   - Contraseña
+   - Nombre de usuario
+   - Dirección
         
 **2. El formulario debe validar que:**
 
-        - El correo electrónico tiene un formato válido.
-        - La contraseña tenga al menos 8 caracteres, incluyendo al menos una letra mayúscula, una letra minúscula, un número y un             carácter especial.
-        - El nombre de usuario no esté vacío y sea único en la plataforma.
-        - La dirección esté completa y válida (COnsiderar posibilidad de incluir validación por medio de una API de direcciones).
+   - El correo electrónico tiene un formato válido.
+   - La contraseña tenga al menos 8 caracteres, incluyendo al menos una letra mayúscula, una letra minúscula, un número y un carácter especial.
+   - El nombre de usuario no esté vacío y sea único en la plataforma.
+   - La dirección esté completa y válida (Considerar posibilidad de incluir validación por medio de una API de direcciones).
           
 **3. El sistema debe enviar un correo de verificación al usuario una vez registrado, y el usuario debe confirmar su correo               antes de poder iniciar sesión.**
 
