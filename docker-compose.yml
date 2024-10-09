@@ -1,0 +1,81 @@
+services:
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: exampledb
+      MYSQL_USER: exampleuser
+      MYSQL_PASSWORD: examplepass
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  
+  backend:
+    image: python:3.9-slim  # Usa una imagen ligera de Python
+    working_dir: /app
+    volumes:
+      - ./backend-fastapi:/app  # Monta tu directorio local de código
+    ports:
+      - "8000:8000"  # Expone el puerto 8000 para FastAPI
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    environment:
+      - PYTHONUNBUFFERED=1
+    # Instalar dependencias antes de ejecutar uvicorn
+    entrypoint: >
+      sh -c "
+      pip install --no-cache-dir uvicorn fastapi &&
+      uvicorn main:app --host 0.0.0.0 --port 8000 --reload"
+
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo_data:/data/db
+
+  apache:
+    image: httpd:latest
+    ports:
+      - 80:80
+    volumes:
+      - ./app:/usr/local/apache2/htdocs/
+
+  redis:
+    image: redis:latest
+    ports:
+      - 6379:6379
+    volumes:
+      - redis_data:/data
+
+  postgresql:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: exampledb
+      POSTGRES_USER: exampleuser
+      POSTGRES_PASSWORD: examplepass
+    ports:
+      - 5433:5433
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer:latest
+    ports:
+      - 8080:8080
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - 5050:80
+
+volumes:
+  mysql_data:
+  mongo_data:
+  redis_data:
+  postgres_data:
