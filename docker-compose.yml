@@ -7,7 +7,9 @@ services:
       MYSQL_USER: exampleuser
       MYSQL_PASSWORD: examplepass
     ports:
-      - 3306:3306
+      - 3310:3306
+    network:
+      - ag
     volumes:
       - mysql_data:/var/lib/mysql
 
@@ -18,7 +20,7 @@ services:
     volumes:
       - ./backend-fastapi:/app  # Monta tu directorio local de código
     ports:
-      - "8000:8000"  # Expone el puerto 8000 para FastAPI
+      - "8020:8000"  # Expone el puerto 8020 para FastAPI
     command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
     environment:
       - PYTHONUNBUFFERED=1
@@ -27,7 +29,8 @@ services:
       sh -c "
       pip install --no-cache-dir uvicorn fastapi &&
       uvicorn main:app --host 0.0.0.0 --port 8000 --reload"
-
+    network:
+      - ag
 
   mongodb:
     image: mongo:latest
