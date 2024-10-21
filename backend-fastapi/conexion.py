@@ -11,7 +11,7 @@ try:
         password=os.environ.get("DB_PASSWORD"),
         host="localhost",
         database="base_web",
-        port="3306"
+        port="3310"
     )
 
     if conexion.is_connected():
