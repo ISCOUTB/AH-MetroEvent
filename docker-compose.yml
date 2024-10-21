@@ -82,3 +82,7 @@ volumes:
   mongo_data:
   redis_data:
   postgres_data:
+
+network:
+  - ag: 
+    External: true
