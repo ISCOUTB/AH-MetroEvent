@@ -33,13 +33,6 @@ services:
     networks:
       - ag
 
-  mongodb:
-    image: mongo:latest
-    ports:
-      - 27017:27017
-    volumes:
-      - mongo_data:/data/db
-
   apache:
     image: httpd:latest
     ports:
@@ -61,7 +54,7 @@ services:
       POSTGRES_USER: exampleuser
       POSTGRES_PASSWORD: examplepass
     ports:
-      - 5433:5433
+      - 7010:7010
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
@@ -80,7 +73,6 @@ services:
 
 volumes:
   mysql_data:
-  mongo_data:
   redis_data:
   postgres_data:
 
