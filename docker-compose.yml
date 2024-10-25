@@ -43,14 +43,14 @@ services:
   redis:
     image: redis:latest
     ports:
-      - 7000:6379
+      - 7087:6379
     volumes:
       - redis_data:/data
 
   adminer:
     image: adminer:latest
     ports:
-      - 8080:8080
+      - 7630:8080
 
 volumes:
   mysql_data:
