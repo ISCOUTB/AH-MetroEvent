@@ -36,7 +36,7 @@ services:
   apache:
     image: httpd:latest
     ports:
-      - 80:80
+      - 7010:80
     volumes:
       - ./app:/usr/local/apache2/htdocs/
 
