@@ -8,7 +8,7 @@ services:
       MYSQL_USER: admin_root
       MYSQL_PASSWORD: admin_root
     ports:
-      - 3310:3310
+      - "3310:3310"
     networks:
       - ag
     volumes:
@@ -35,7 +35,7 @@ services:
   apache:
     image: httpd:latest
     ports:
-      - 7010:7010
+      - "7010:7010"
     networks:
       - ag
     volumes:
@@ -44,7 +44,7 @@ services:
   adminer:
     image: adminer:latest
     ports:
-      - 7630:8080
+      - "7630:8080"
     networks:
       - ag  
 
