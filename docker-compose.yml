@@ -8,12 +8,11 @@ services:
       MYSQL_USER: admin_root
       MYSQL_PASSWORD: admin_root
     ports:
-      - 3310:3306
+      - 3310:3310
     networks:
       - ag
     volumes:
       - mysql_data:/var/lib/mysql
-
   
   backend:
     image: python:3.9-slim  # Usa una imagen ligera de Python
@@ -49,10 +48,9 @@ services:
     networks:
       - ag  
 
-volumes:
-  mysql_data:
-
-
 networks:
   ag:
     external: true
+
+volumes:
+  mysql_data:
