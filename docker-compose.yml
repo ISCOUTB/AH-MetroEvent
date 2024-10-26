@@ -37,6 +37,8 @@ services:
     image: httpd:latest
     ports:
       - 7010:7010
+    networks:
+      - ag
     volumes:
       - ./app:/usr/local/apache2/htdocs/
 
@@ -44,6 +46,8 @@ services:
     image: adminer:latest
     ports:
       - 7630:8080
+    networks:
+      - ag  
 
 volumes:
   mysql_data:
