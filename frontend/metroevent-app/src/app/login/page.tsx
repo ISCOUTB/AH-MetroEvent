@@ -2,6 +2,8 @@
 
 import React, { useState, FormEvent } from 'react';
 import '../index.css';
+import logo from '../../../components/img/logoM.png'
+import Image from 'next/image';
 
 function Login() {
   const [email, setEmail] = useState<string>('');
@@ -22,17 +24,20 @@ function Login() {
     } else {
       setError('Credenciales incorrectas');
     }
-  };
+  }; 
 
   return (
     <div className="login-container">
       <div className="login-box">
-        <h2>Iniciar Sesión</h2>
+        <div className='flex  w-full justify-center'>
+          <Image className=" w-[5vw] h-[2vw]" src={logo} alt="Logo" priority />
+        </div>
+        <h2 className='protest-strike-regular'>Iniciar Sesión</h2>
         {error && <p style={{ color: 'red' }}>{error}</p>}
         <form onSubmit={handleSubmit}>
           <div>
             <label>Email</label>
-            <input
+            <input className='border border-black'
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -40,7 +45,7 @@ function Login() {
           </div>
           <div>
             <label>Contraseña</label>
-            <input
+            <input className='border border-black'
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}

@@ -1,4 +1,4 @@
-'"use client";'
+"use client";
 
 import Link from 'next/link';
 import Image from 'next/image';
@@ -14,7 +14,6 @@ import conferencia from '../../components/img/conferencia.png';
 import comida from '../../components/img/comida.png';
 import deportivo from '../../components/img/deportivo.png';
 import sociales from '../../components/img/sociales.png';
-
 
 export default function Page() {
   const backgroundImages = [backimg1, backimg2, backimg3];
@@ -35,7 +34,7 @@ export default function Page() {
       {backgroundImages.map((image, index) => (
         <div
           key={index}
-          className="w-full h-[70vh] bg-cover bg-center"
+          className="w-full h-[80vh] bg-cover bg-center"
           style={{
             backgroundImage: `url(${image.src})`,
           }}
@@ -94,6 +93,124 @@ export default function Page() {
               </button>
             ))}
           </div>
+          <div className='flex justify-between items-center mx-4 py-4'>
+            <div className='text-black text-[2vw] oxygen-bold'>
+              Populares
+            </div>
+            <div className='text-black oxygen-regular text-[1vw]'>
+              Ver Todos
+            </div>
+          </div>
+          <div className='flex mx-2 gap-4'>
+            <div className='w-[27vw] h-[50vh] rounded-xl bg-white border-2 border-[#979797] oxygen-bold flex flex-col'>
+              {/* USER */}
+              <div className='flex items-center h-[13%] p-2 text-black text-[1.2vw]'>
+                <Image src={logo} alt="Usuario" width={30} height={30} className="rounded-full bg-white" />
+                <span className="ml-2">Nombre Usuario</span>
+              </div>
+              {/* Imagen del evento */}
+              <div className='w-full h-[48%]' style={{ height: '48%' }}>
+                <Image src={backimg1} alt="Imagen del Evento" objectFit="cover" className='w-full h-full' />
+              </div>
+              {/* Nombre del evento */}
+              <div className='h-[13%]  flex items-center justify-start text-black mx-4 text-[1.2vw]'>
+                Nombre del Evento
+              </div>
+              {/* Ubicación */}
+              <div className='h-[13%]  flex items-center justify-start text-black mx-4 text-[1.2vw]'>
+                Ubicación
+              </div>
+              {/* Fecha */}
+              <div className='h-[13%]  flex items-center justify-start text-black mx-4 text-[1.2vw]'>
+                Fecha y Hora
+              </div>
+            </div>
+
+            <div className='w-[27vw] h-[50vh] rounded-xl bg-white border-2 border-[#979797] oxygen-bold flex flex-col'>
+              {/* USER */}
+              <div className='flex items-center h-[13%] p-2 text-black text-[1.2vw]'>
+                <Image src={logo} alt="Usuario" width={30} height={30} className="rounded-full bg-white" />
+                <span className="ml-2">Nombre Usuario</span>
+              </div>
+              {/* Imagen del evento */}
+              <div className='w-full h-[48%]' style={{ height: '48%' }}>
+                <Image src={backimg1} alt="Imagen del Evento" objectFit="cover" className='w-full h-full' />
+              </div>
+              {/* Nombre del evento */}
+              <div className='h-[13%]  flex items-center justify-start text-black mx-4 text-[1.2vw]'>
+                Nombre del Evento
+              </div>
+              {/* Ubicación */}
+              <div className='h-[13%]  flex items-center justify-start text-black mx-4 text-[1.2vw]'>
+                Ubicación
+              </div>
+              {/* Fecha */}
+              <div className='h-[13%]  flex items-center justify-start text-black mx-4 text-[1.2vw]'>
+                Fecha y Hora
+              </div>
+            </div>
+
+          </div>
+          <div className='flex justify-between items-center mx-4 py-4'>
+            <div className='text-black text-[2vw] oxygen-bold'>
+              Nevos eventos
+            </div>
+            <div className='text-black oxygen-regular text-[1vw]'>
+              Ver Todos
+            </div>
+          </div>
+          <div className='flex mx-2 gap-4'>
+            <div className='w-[27vw] h-[50vh] rounded-xl bg-white border-2 border-[#979797] oxygen-bold flex flex-col'>
+              {/* USER */}
+              <div className='flex items-center h-[13%] p-2 text-black text-[1.2vw]'>
+                <Image src={logo} alt="Usuario" width={30} height={30} className="rounded-full bg-white" />
+                <span className="ml-2">Nombre Usuario</span>
+              </div>
+              {/* Imagen del evento */}
+              <div className='w-full h-[48%]' style={{ height: '48%' }}>
+                <Image src={backimg1} alt="Imagen del Evento" objectFit="cover" className='w-full h-full' />
+              </div>
+              {/* Nombre del evento */}
+              <div className='h-[13%]  flex items-center justify-start text-black mx-4 text-[1.2vw]'>
+                Nombre del Evento
+              </div>
+              {/* Ubicación */}
+              <div className='h-[13%]  flex items-center justify-start text-black mx-4 text-[1.2vw]'>
+                Ubicación
+              </div>
+              {/* Fecha */}
+              <div className='h-[13%]  flex items-center justify-start text-black mx-4 text-[1.2vw]'>
+                Fecha y Hora
+              </div>
+            </div>
+
+            <div className='w-[27vw] h-[50vh] rounded-xl bg-white border-2 border-[#979797] oxygen-bold flex flex-col'>
+              {/* USER */}
+              <div className='flex items-center h-[13%] p-2 text-black text-[1.2vw]'>
+                <Image src={logo} alt="Usuario" width={30} height={30} className="rounded-full bg-white" />
+                <span className="ml-2">Nombre Usuario</span>
+              </div>
+              {/* Imagen del evento */}
+              <div className='w-full h-[48%]' style={{ height: '48%' }}>
+                <Image src={backimg1} alt="Imagen del Evento" objectFit="cover" className='w-full h-full' />
+              </div>
+              {/* Nombre del evento */}
+              <div className='h-[13%]  flex items-center justify-start text-black mx-4 text-[1.2vw]'>
+                Nombre del Evento
+              </div>
+              {/* Ubicación */}
+              <div className='h-[13%]  flex items-center justify-start text-black mx-4 text-[1.2vw]'>
+                Ubicación
+              </div>
+              {/* Fecha */}
+              <div className='h-[13%]  flex items-center justify-start text-black mx-4 text-[1.2vw]'>
+                Fecha y Hora
+              </div>
+            </div>
+
+          </div>
+          
+
         </div>
       </div>
     </div>
