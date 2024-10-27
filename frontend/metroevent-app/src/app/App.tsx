@@ -1,8 +1,9 @@
+"use client";
 
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Login from './Login';
-import Register from './Register';
+import Login from './login/page';
+import Register from './register/page';
 
 function App() {
   return (
