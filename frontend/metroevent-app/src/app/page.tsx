@@ -52,13 +52,13 @@ export default function Page() {
             ciudad
           </div>
           <Link href="/login" passHref>
-            <div className="rounded-2xl bg-[#7101FF] border-black items-center justify-center flex w-[11.8vw] text-white h-[7vh] cursor-pointer">
-              log in
+            <div className="rounded-2xl bg-[#7101FF] border-black items-center justify-center flex w-[11.8vw] text-white h-[7vh] cursor-pointer oxygen-bold">
+              LOGIN
             </div>
           </Link>
           <Link href="/register" passHref>
-            <div className="rounded-2xl bg-[#7101FF] border-black items-center justify-center flex w-[11.8vw] text-white h-[7vh] cursor-pointer">
-              sign up
+            <div className="rounded-2xl bg-[#7101FF] border-black items-center justify-center flex w-[11.8vw] text-white h-[7vh] cursor-pointer oxygen-bold">
+              REGISTER
             </div>
           </Link>
         </div>
@@ -87,7 +87,7 @@ export default function Page() {
             {categorias.map((categoria, index) => (
               <button
                 key={index}
-                className="w-[17vw] h-[15vh] rounded-lg bg-white border-2 border-[#979797] hover:bg-[#7101FF] hover:border-black hover:text-white transition-colors duration-300 flex flex-col items-center justify-center"
+                className="w-[17vw] h-[15vh] rounded-lg bg-white border-2 border-[#979797] hover:bg-[#7101FF] hover:border-black transition-colors duration-300 flex flex-col items-center justify-center"
               >
                 <div className="text-center">{categoria.nombre}</div>
                 <Image src={categoria.img} alt={categoria.nombre} width={50} height={50} className="mt-2" />
