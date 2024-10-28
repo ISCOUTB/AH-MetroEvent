@@ -32,25 +32,10 @@ services:
     networks:
       - ag
 
-  apache:
-    image: httpd:latest
-    ports:
-      - "7010:7010"
-    networks:
-      - ag
-    volumes:
-      - ./app:/usr/local/apache2/htdocs/
-
-  adminer:
-    image: adminer:latest
-    ports:
-      - "7630:8080"
-    networks:
-      - ag  
+volumes:
+  mysql_data:
 
 networks:
   ag:
     external: true
 
-volumes:
-  mysql_data:
