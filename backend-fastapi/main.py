@@ -1,6 +1,11 @@
+# backend-fastapi/main.py
 from fastapi import FastAPI
 from auth import auth_router
 from events import event_router
+from database import Base, engine
+
+# Crea todas las tablas en la base de datos
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
