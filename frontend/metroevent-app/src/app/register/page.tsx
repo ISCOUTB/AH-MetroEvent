@@ -2,14 +2,22 @@
 
 import React, { useState, FormEvent } from 'react';
 import '../index.css';
+import { useRouter } from 'next/navigation';
 
 function Register() {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [error, setError] = useState<string>('');
+  const [successMessage, setSuccessMessage] = useState<string>('');
 
-  const handleSubmit = (e: FormEvent) => {
+ 
+  const router = useRouter();
+
+  
+  const API_URL = 'http://localhost:8020/auth/register';
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     if (!email || !password || !confirmPassword) {
@@ -22,10 +30,38 @@ function Register() {
       return;
     }
 
-    const newUser = { email, password };
-    localStorage.setItem('user', JSON.stringify(newUser));
+    setError(''); 
+    setSuccessMessage(''); 
 
-    alert('Registro exitoso');
+    try {
+     
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: email,
+          password: password,
+        }),
+      });
+
+      if (!response.ok) {
+        
+        const data = await response.json();
+        throw new Error(data.detail || 'Error al registrar el usuario');
+      }
+
+      setSuccessMessage('Registro exitoso');
+
+      
+      setTimeout(() => {
+        router.push('/');
+      }, 1000);
+
+    } catch (error: any) {
+      setError(error.message || 'Error desconocido');
+    }
   };
 
   return (
@@ -33,6 +69,7 @@ function Register() {
       <div className="register-box">
         <h2>Registrarse</h2>
         {error && <p style={{ color: 'red' }}>{error}</p>}
+        {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
         <form onSubmit={handleSubmit}>
           <div>
             <label>Email</label>

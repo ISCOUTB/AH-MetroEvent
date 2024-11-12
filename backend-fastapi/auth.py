@@ -1,4 +1,3 @@
-# backend-fastapi/auth.py
 from fastapi import APIRouter, HTTPException, Depends
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
@@ -7,7 +6,6 @@ from database import get_db
 
 auth_router = APIRouter()
 
-# Modelo de datos
 class User(BaseModel):
     username: str
     password: str

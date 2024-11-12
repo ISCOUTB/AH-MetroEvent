@@ -1,4 +1,3 @@
-# backend-fastapi/events.py
 from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.orm import Session
 from pydantic import BaseModel
@@ -8,12 +7,14 @@ from database import get_db
 
 event_router = APIRouter()
 
-# Modelo de datos para eventos
 class Event(BaseModel):
     title: str
     description: str
     date: str
     location: str
+    category: str
+    organizer_email: str
+    attendees: int = 0  
 
     class Config:
         orm_mode = True
@@ -26,9 +27,10 @@ def create_event(event: Event, db: Session = Depends(get_db)):
     db.refresh(new_event)
     return {"message": "Evento creado exitosamente", "event": new_event}
 
+
 @event_router.get("/", response_model=List[Event])
 def get_all_events(db: Session = Depends(get_db)):
-    events = db.query(EventModel).all()
+    events = db.query(EventModel).order_by(EventModel.attendees.desc()).all()
     if not events:
         raise HTTPException(status_code=404, detail="No se encontraron eventos")
     return events

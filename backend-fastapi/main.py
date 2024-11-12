@@ -2,14 +2,25 @@
 from fastapi import FastAPI
 from auth import auth_router
 from events import event_router
+from fastapi.middleware.cors import CORSMiddleware
 from database import Base, engine
 
-# Crea todas las tablas en la base de datos
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-# Registrar rutas
+origins = [
+    "*",  
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],  
+    allow_headers=["*"],  
+)
+
 app.include_router(auth_router, prefix="/auth")
 app.include_router(event_router, prefix="/events")
 
