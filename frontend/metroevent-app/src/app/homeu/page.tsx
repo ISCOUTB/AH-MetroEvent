@@ -20,32 +20,36 @@ import sociales from '../../../components/img/sociales.png';
 function HomeU() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const backgroundImages = [backimg1, backimg2, backimg3];
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-  const categorias = [
-    { nombre: "Música", img: musica },
-    { nombre: "Artes", img: arte },
-    { nombre: "Vida Nocturna", img: vidanoc },
-    { nombre: "Negocios", img: negocios },
-    { nombre: "Conferencias y charlas", img: conferencia },
-    { nombre: "Comida y Bebidas", img: comida },
-    { nombre: "Deportivo", img: deportivo },
-    { nombre: "Sociales", img: sociales },
+  const backgroundImages = [
+    {id: "img1", src:backimg1},
+    {id: "img2", src:backimg2},
+    {id: "img3", src:backimg3},
   ];
 
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const categorias = [
+    { id: 1, nombre: "Música", img: musica },
+    { id: 2, nombre: "Artes", img: arte },
+    { id: 3, nombre: "Vida Nocturna", img: vidanoc },
+    { id: 4, nombre: "Negocios", img: negocios },
+    { id: 5, nombre: "Conferencias y charlas", img: conferencia },
+    { id: 6, nombre: "Comida y Bebidas", img: comida },
+    { id: 7, nombre: "Deportivo", img: deportivo },
+    { id: 8, nombre: "Sociales", img: sociales },
+  ];
   
 
   return (
     <div className="relative w-full">
-      {backgroundImages.map((image, index) => (
-        <div
-          key={index}
-          className="w-full h-[80vh] bg-cover bg-center"
-          style={{
-            backgroundImage: `url(${image.src})`,
-          }}
-        />
-      ))}
+      {backgroundImages.map((image) => (
+      <div
+        key={image.id}
+        className="w-full h-[85vh] bg-cover bg-center"
+        style={{
+          backgroundImage: `url(${image.src.src})`,
+        }}
+      />
+    ))}
 
       <div className="pt-9 absolute top-0 left-0 w-full flex flex-col items-center justify-start min-h-screen gap-24">
         <div className="bg-white p-[0.5vw] rounded-2xl w-[95vw] flex gap-8 h-[12] items-center">
@@ -92,15 +96,21 @@ function HomeU() {
             </div>
           </div>
           <div className='grid grid-cols-4 gap-4 justify-center justify-items-center oxygen-regular text-black pt-4'>
-            {categorias.map((categoria, index) => (
-              <button
-                key={index}
-                className="w-[17vw] h-[15vh] rounded-lg bg-white border-2 border-[#979797] hover:bg-[#7101FF] hover:border-black transition-colors duration-300 flex flex-col items-center justify-center"
-              >
-                <div className="text-center">{categoria.nombre}</div>
-                <Image src={categoria.img} alt={categoria.nombre} width={50} height={50} className="mt-2" />
-              </button>
-            ))}
+          {categorias.map((categoria) => (
+  <button
+    key={categoria.id}
+    className="w-[17vw] h-[15vh] rounded-lg bg-white border-2 border-[#979797] hover:bg-[#7101FF] hover:border-black transition-colors duration-300 flex flex-col items-center justify-center"
+  >
+    <div className="text-center">{categoria.nombre}</div>
+    <Image
+      src={categoria.img.src} // Asegúrate de usar `.src` si las imágenes provienen de `next/image`
+      alt={categoria.nombre}
+      width={50}
+      height={50}
+      className="mt-2"
+    />
+  </button>
+))}
           </div>
           <div className='flex justify-between items-center mx-4 py-4'>
             <div className='text-black text-[2vw] oxygen-bold'>
