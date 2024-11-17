@@ -2,7 +2,10 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 import os
 
-DATABASE_URL = "mysql+pymysql://admin_root:admin_root@ah_metroevents_db:3306/bmetroevents"
+user = os.environ["metro"]
+password = os.environ["event"]
+
+DATABASE_URL = "mysql+pymysql://{user}:{password}@ah_metroevents_db:3306/bmetroevents"
 
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
