@@ -11,7 +11,9 @@ function Register() {
   const [error, setError] = useState<string>('');
   const [successMessage, setSuccessMessage] = useState<string>('');
 
- 
+  interface CustomError {
+    message: string;
+  }
   const router = useRouter();
 
   
@@ -59,9 +61,10 @@ function Register() {
         router.push('/');
       }, 1000);
 
-    } catch (error: any) {
-      setError(error.message || 'Error desconocido');
-    }
+    } catch (error) {
+      const customError = error as CustomError;
+      setError(customError.message || 'Error desconocido');
+  }
   };
 
   return (

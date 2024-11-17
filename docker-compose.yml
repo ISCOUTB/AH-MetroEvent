@@ -13,6 +13,18 @@ services:
       - ag
     volumes:
       - mysql_data:/var/lib/mysql
+
+  frontend:
+    build:
+      context: ./frontend/metroevent-app  
+      dockerfile: Dockerfile
+    ports:
+      - 9020:9020
+    volumes:
+      - ./frontend/metroevent-app/:/app
+    environment:
+      NODE_ENV: production
+    container_name: ah-metroevent-frontend    
   
   backend:
     image: python:3.9-slim  # Usa una imagen ligera de Python

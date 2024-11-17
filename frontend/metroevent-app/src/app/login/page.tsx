@@ -12,7 +12,10 @@ function Login() {
   const [error, setError] = useState<string>('');
   const [successMessage, setSuccessMessage] = useState<string>('');
 
-  
+  interface CustomError {
+    message: string;
+  }
+
   const API_URL = 'http://localhost:8020/auth/login';
 
   const router = useRouter();
@@ -54,9 +57,10 @@ function Login() {
       }, 1000); 
 
       setError('');
-    } catch (error: any) {
-      setError(error.message || 'Error desconocido');
-    }
+    } catch (error) {
+      const customError = error as CustomError;
+      setError(customError.message || 'Error desconocido');
+  }
   };
 
   return (
