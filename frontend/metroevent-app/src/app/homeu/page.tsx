@@ -76,11 +76,7 @@ function HomeU() {
         </div>
         <div className='w-[75vw] h-[30vh] flex-col items-center text-white text-[5vw] protest-strike-regular'>
           <div>
-            Descubre y&nbsp;
-            <span className="text-[#7101FF] ">
-              crea
-            </span>
-            &nbsp;momentos
+            Descubre y&nbsp;<span className="text-[#7101FF]">crea</span>&nbsp;momentos
           </div>
           <div>
             inolvidables
