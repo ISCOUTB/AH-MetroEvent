@@ -70,17 +70,19 @@ function Login() {
         {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
         <form onSubmit={handleSubmit}>
           <div>
-            <label>Email</label>
+            <label htmlFor="email">Email</label>
             <input
-              className='border border-black'
+              id="email"
+              className="border border-black"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div>
-            <label>Contraseña</label>
+            <label htmlFor="contraseña">Contraseña</label>
             <input
+              id="contraseña"
               className='border border-black'
               type="password"
               value={password}
