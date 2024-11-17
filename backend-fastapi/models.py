@@ -3,6 +3,9 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 import enum
 
+USER_ID_REF = 'users.user_id'
+EVENT_ID_REF = 'events.event_id'
+
 Base = declarative_base()
 
 class User(Base):
@@ -45,8 +48,8 @@ class Comment(Base):
     __tablename__ = 'comments'
     
     comments_id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('users.user_id'), nullable=True)
-    event_id = Column(Integer, ForeignKey('events.event_id'), nullable=True)
+    user_id = Column(Integer, ForeignKey(USER_ID_REF), nullable=True)
+    event_id = Column(Integer, ForeignKey(EVENT_ID_REF), nullable=True)
     content = Column(String(100), nullable=False)
     rating = Column(Enum('1', '2', '3', '4', '5'), nullable=False)
     created_at = Column(Date, nullable=True)
@@ -78,8 +81,8 @@ class Notification(Base):
     __tablename__ = 'notifications'
     
     notifications_id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('users.user_id'), nullable=True)
-    event_id = Column(Integer, ForeignKey('events.event_id'), nullable=True)
+    user_id = Column(Integer, ForeignKey(USER_ID_REF), nullable=True)
+    event_id = Column(Integer, ForeignKey(EVENT_ID_REF), nullable=True)
     message = Column(String(200), nullable=False)
     sent_at = Column(Date, nullable=False)
     
@@ -91,7 +94,7 @@ class Notification(Base):
 class UserProfile(Base):
     __tablename__ = 'user_profiles'
     
-    user_id = Column(Integer, ForeignKey('users.user_id'), primary_key=True)
+    user_id = Column(Integer, ForeignKey(USER_ID_REF), primary_key=True)
     full_name = Column(String(45), nullable=False)
     biografia = Column(String(100), nullable=True)
     update_at = Column(String(45), nullable=False)
