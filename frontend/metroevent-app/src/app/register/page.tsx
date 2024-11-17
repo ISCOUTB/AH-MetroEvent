@@ -72,24 +72,27 @@ function Register() {
         {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
         <form onSubmit={handleSubmit}>
           <div>
-            <label>Email</label>
+             <label htmlFor="register-email">Email</label>
             <input
+              id="register-email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div>
-            <label>Contraseña</label>
+            <label htmlFor="register-password">Contraseña</label>
             <input
+              id="register-password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <div>
-            <label>Confirmar Contraseña</label>
+            <label htmlFor="register-confirm-password">Confirmar Contraseña</label>
             <input
+              id="register-confirm-password"
               type="password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
