@@ -2,12 +2,11 @@ FROM python:3.12
 
 # Set timezone and install required dependencies
 RUN apt-get update && \
-    apt-get install -yq tzdata && \
+    apt-get install --no-install-recommends -yq tzdata && \
     ln -fs /usr/share/zoneinfo/America/Bogota /etc/localtime && \
     dpkg-reconfigure -f noninteractive tzdata && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \
-    rm -rf /var/cache/apt/*
+    rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
 # Create a non-root user
 RUN groupadd -r appuser && \

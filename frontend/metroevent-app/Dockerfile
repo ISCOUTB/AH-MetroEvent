@@ -5,11 +5,10 @@ FROM base AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /frontend/metroevent-app/app
 
-# Instalar dependencias basándose en el gestor preferido
-# Especificar archivos explícitos en lugar de usar patrones de globbing
+# Install dependencies securely, ignoring third-party scripts unless needed
 COPY package.json .
 COPY package-lock.json .
-RUN npm ci
+RUN npm ci --ignore-scripts
 
 # Rebuild the source code only when needed
 FROM base AS builder
@@ -35,10 +34,11 @@ WORKDIR /frontend/metroevent-app/app
 
 ENV NODE_ENV=production
 
+# Create and use a non-root user for running the application
 RUN addgroup --system --gid 1001 nodejs \
-&& adduser --system --uid 1001 nextjs \
-&& mkdir .next \
-&& chown nextjs:nodejs .next
+  && adduser --system --uid 1001 nextjs \
+  && mkdir .next \
+  && chown nextjs:nodejs .next
 
 # Automatically leverage output traces to reduce image size
 COPY --from=builder --chown=root:root --chmod=755 /frontend/metroevent-app/app/.next/standalone ./
@@ -49,7 +49,7 @@ USER nextjs
 EXPOSE 9020
 
 ENV PORT=9020
-
-# server.js es creado por next build desde el output standalone
 ENV HOSTNAME="0.0.0.0"
+
+# Use the standalone server created by next build
 CMD ["node", "server.js"]
