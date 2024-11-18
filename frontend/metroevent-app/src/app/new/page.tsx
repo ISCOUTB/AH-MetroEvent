@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { useToast } from "@/hooks/use-toast"
 
 function Crear() {
   const router = useRouter();
@@ -22,8 +21,6 @@ function Crear() {
     city: "",
   });
   const [userId, setUserId] = useState<string | null>(null);
-
-  const { toast } = useToast()
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -100,20 +97,13 @@ function Crear() {
       console.log("Evento creado exitosamente:", data);
       
       // Show success message
-      toast({
-        title: "Éxito",
-        description: "Evento creado exitosamente",
-      });
+     
 
       // Redirect to home page
       router.push('/homeu');
     } catch (error) {
       console.error("Error al enviar los datos del evento:", error);
-      toast({
-        title: "Error",
-        description: "No se pudo crear el evento. Por favor, intente de nuevo.",
-        variant: "destructive",
-      });
+      
     }
   };
 

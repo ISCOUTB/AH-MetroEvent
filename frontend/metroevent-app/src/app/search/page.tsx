@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
@@ -19,7 +19,7 @@ interface Event {
   attendees: number
 }
 
-export default function SearchResults() {
+function SearchResultsContent() {
   const [events, setEvents] = useState<Event[]>([])
   const [loading, setLoading] = useState(true)
   const searchParams = useSearchParams()
@@ -78,23 +78,31 @@ export default function SearchResults() {
   )
 
   return (
+    <div className="max-w-6xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden p-8">
+      <h1 className="text-3xl font-bold mb-6 text-center text-indigo-600">
+        {category ? `Events in ${category}` : `Search Results for "${query}"`}
+      </h1>
+      {loading ? (
+        <div className="text-center text-xl">Loading events...</div>
+      ) : events.length > 0 ? (
+        <div className="flex flex-wrap justify-center gap-4">
+          {events.map((event) => (
+            <EventCard key={event.event_id} event={event} />
+          ))}
+        </div>
+      ) : (
+        <div className="text-center text-xl">No events found.</div>
+      )}
+    </div>
+  )
+}
+
+export default function SearchResults() {
+  return (
     <div className="min-h-screen bg-gradient-to-br from-purple-400 to-indigo-600 p-8">
-      <div className="max-w-6xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden p-8">
-        <h1 className="text-3xl font-bold mb-6 text-center text-indigo-600">
-          {category ? `Events in ${category}` : `Search Results for "${query}"`}
-        </h1>
-        {loading ? (
-          <div className="text-center text-xl">Loading events...</div>
-        ) : events.length > 0 ? (
-          <div className="flex flex-wrap justify-center gap-4">
-            {events.map((event) => (
-              <EventCard key={event.event_id} event={event} />
-            ))}
-          </div>
-        ) : (
-          <div className="text-center text-xl">No events found.</div>
-        )}
-      </div>
+      <Suspense fallback={<div className="text-center text-xl text-white">Loading search results...</div>}>
+        <SearchResultsContent />
+      </Suspense>
     </div>
   )
 }
