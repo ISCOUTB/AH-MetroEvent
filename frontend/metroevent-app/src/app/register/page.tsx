@@ -5,6 +5,7 @@ import '../index.css';
 import { useRouter } from 'next/navigation';
 
 function Register() {
+  const [username, setUsername] = useState<string>(''); // Estado para el username
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
@@ -16,13 +17,12 @@ function Register() {
   }
   const router = useRouter();
 
-  
   const API_URL = 'http://localhost:8020/auth/register';
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    if (!email || !password || !confirmPassword) {
+    if (!username || !email || !password || !confirmPassword) {
       setError('Por favor, rellena todos los campos');
       return;
     }
@@ -32,39 +32,36 @@ function Register() {
       return;
     }
 
-    setError(''); 
-    setSuccessMessage(''); 
+    setError('');
+    setSuccessMessage('');
 
     try {
-     
       const response = await fetch(API_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          username: email,
-          password: password,
+          username, // Incluye el username
+          email,    // Ahora enviamos el email también
+          password,
         }),
       });
 
       if (!response.ok) {
-        
         const data = await response.json();
         throw new Error(data.detail || 'Error al registrar el usuario');
       }
 
       setSuccessMessage('Registro exitoso');
 
-      
       setTimeout(() => {
         router.push('/');
       }, 1000);
-
     } catch (error) {
       const customError = error as CustomError;
       setError(customError.message || 'Error desconocido');
-  }
+    }
   };
 
   return (
@@ -75,7 +72,16 @@ function Register() {
         {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
         <form onSubmit={handleSubmit}>
           <div>
-             <label htmlFor="register-email">Email</label>
+            <label htmlFor="register-username">Nombre de Usuario</label>
+            <input
+              id="register-username"
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="register-email">Email</label>
             <input
               id="register-email"
               type="email"

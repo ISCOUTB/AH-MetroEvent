@@ -7,7 +7,8 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 function Login() {
-  const [email, setEmail] = useState<string>('');
+
+  const [username, setUsername] = useState<string>(''); // Cambiar 'email' por 'username'
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string>('');
   const [successMessage, setSuccessMessage] = useState<string>('');
@@ -23,7 +24,7 @@ function Login() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    if (!email || !password) {
+    if (!username || !password) {
       setError('Por favor, rellena todos los campos');
       return;
     }
@@ -37,7 +38,7 @@ function Login() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          username: email,
+          username: username, // Usamos 'username' en lugar de 'email'
           password: password,
         }),
       });
@@ -48,7 +49,8 @@ function Login() {
       }
 
       const data = await response.json();
-      localStorage.setItem('token', data.access_token); 
+      localStorage.setItem('token', data.access_token);
+      localStorage.setItem('user_id', data.user_id);
 
       setSuccessMessage('Inicio exitoso');
 
@@ -60,7 +62,7 @@ function Login() {
     } catch (error) {
       const customError = error as CustomError;
       setError(customError.message || 'Error desconocido');
-  }
+    }
   };
 
   return (
@@ -74,13 +76,13 @@ function Login() {
         {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
         <form onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="email">Email</label>
+            <label htmlFor="username">Nombre de Usuario</label> {/* Cambiar 'email' a 'username' */}
             <input
-              id="email"
+              id="username"
               className="border border-black"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              type="text" // Usamos 'text' en lugar de 'email'
+              value={username} // Usamos el estado 'username'
+              onChange={(e) => setUsername(e.target.value)} // Actualizamos el estado de 'username'
             />
           </div>
           <div>

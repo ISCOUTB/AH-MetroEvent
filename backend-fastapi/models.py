@@ -30,10 +30,11 @@ class Event(Base):
     event_id = Column(Integer, primary_key=True, autoincrement=True)
     title = Column(String(45), nullable=False)
     description = Column(String(45), nullable=True)
-    category = Column(String(45), nullable=False)
+    event_category = Column(String(45), nullable=False)
     location = Column(String(45), nullable=False)
-    startime = Column(DateTime, nullable=False)
-    end_time = Column(DateTime, nullable=False)
+    city = Column(String(45), nullable=False)
+    start_date = Column(DateTime, nullable=False)
+    end_date = Column(DateTime, nullable=False)
     organizer_id = Column(Integer, ForeignKey('users.user_id'), nullable=True)
     attendees = Column(Integer, default=0)
     
@@ -74,7 +75,7 @@ class EventCategoryAssignment(Base):
     
     # Relaciones
     event = relationship("Event", back_populates="categories")
-    category = relationship("EventCategory")
+    event_category = relationship("EventCategory")
 
 
 class Notification(Base):
