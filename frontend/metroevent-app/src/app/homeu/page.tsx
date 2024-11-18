@@ -103,7 +103,7 @@ function Homeu() {
     { id: 8, nombre: "Sociales", img: sociales },
   ]
 
-  const EventCard = ({ event }: { event: Event })=>(
+  const EventCard = ({ event }: { event: Event })(
     <button
       onClick={() => router.push(`/event/${event.event_id}`)}
       className='w-[27vw] h-[50vh] rounded-xl bg-white border-2 border-[#979797] oxygen-bold flex flex-col hover:shadow-lg transition-shadow duration-300'
