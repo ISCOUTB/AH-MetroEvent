@@ -2,8 +2,9 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 import os
 
-user = "admin_root"
-password = "admin_root"
+load_dotenc()
+user = os.getenv("DB_USER")
+password = os.getenv("DB_PASSWORD")
 
 DATABASE_URL = f"mysql+pymysql://{user}:{password}@ah_metroevents_db:3306/bmetroevents"
 
