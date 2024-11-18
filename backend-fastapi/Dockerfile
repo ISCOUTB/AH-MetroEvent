@@ -16,13 +16,15 @@ RUN groupadd -r appuser && \
 # Set up the working directory
 WORKDIR /main
 
-# Copy the requirements file and install dependencies
+# Copy only required files for dependencies
 COPY requirements.txt ./
 RUN pip3 install --no-cache-dir -r requirements.txt && \
     rm -rf /root/.cache/pip/*
 
-# Copy application code
-COPY . .
+# Copy specific application files (adjust paths as needed)
+COPY app/ ./app
+COPY config/ ./config
+COPY main.py ./main.py
 
 # Change ownership of the working directory to the non-root user
 RUN chown -R appuser:appuser /main
