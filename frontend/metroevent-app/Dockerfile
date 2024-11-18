@@ -15,7 +15,12 @@ RUN npm ci
 FROM base AS builder
 WORKDIR /frontend/metroevent-app/app
 COPY --from=deps /frontend/metroevent-app/app/node_modules ./node_modules
-COPY . .
+COPY package.json .
+COPY package-lock.json .
+COPY public ./public
+COPY src ./src
+COPY next.config.js .
+COPY tsconfig.json .
 
 RUN \
   if [ -f yarn.lock ]; then yarn run build; \

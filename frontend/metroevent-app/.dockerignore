@@ -1,0 +1,11 @@
+# Ignorar node_modules ya que se reconstruyen en la imagen
+node_modules/
+# Ignorar configuraciones sensibles
+.env
+# Ignorar archivos de desarrollo y backups
+*.log
+*.bak
+*.tmp
+.DS_Store
+.vscode/
+.idea/
