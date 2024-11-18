@@ -3,12 +3,9 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 from dotenv import load_dotenv
 import os
 
-<<<<<<< HEAD
-load_dotenv()
-=======
 load_dotenv()
 
->>>>>>> afd6107 (	modificados:     backend-fastapi/.env)
+
 user = os.getenv("DB_USER")
 password = os.getenv("DB_PASSWORD")
 
