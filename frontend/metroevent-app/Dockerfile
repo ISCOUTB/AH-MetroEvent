@@ -18,7 +18,8 @@ COPY package.json .
 COPY package-lock.json .
 COPY next.config.js .
 COPY tsconfig.json .
-COPY . .
+COPY src ./src
+COPY components ./components
 
 RUN \
   if [ -f yarn.lock ]; then yarn run build; \
