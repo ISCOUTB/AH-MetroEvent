@@ -69,6 +69,7 @@ function Crear() {
     }
 
     const eventData = {
+      event_id: 0,
       title: formData.title,
       description: formData.description,
       location: formData.location,

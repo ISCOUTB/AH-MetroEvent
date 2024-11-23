@@ -10,8 +10,8 @@ from fastapi import Query
 
 event_router = APIRouter()
 
-class Event(BaseModel):
-    event_id: int
+class Event2(BaseModel):
+   
     title: str
     description: str
     location: str
@@ -19,7 +19,19 @@ class Event(BaseModel):
     event_category: str
     start_date: datetime  # Ahora es datetime
     end_date: datetime    # Ahora es datetime
-    organizer_id: int
+    organizer_id: int 
+    attendees: int = 0  
+
+class Event(BaseModel):
+    event_id: int = 0
+    title: str
+    description: str
+    location: str
+    city: str
+    event_category: str
+    start_date: datetime  # Ahora es datetime
+    end_date: datetime    # Ahora es datetime
+    organizer_id: int 
     attendees: int = 0  
 
     class Config:
@@ -33,7 +45,7 @@ def get_categories(db: Session = Depends(get_db)):
     return [event_category.name for event_category in categories]
 
 @event_router.post("/create")
-def create_event(event: Event, db: Session = Depends(get_db)):
+def create_event(event: Event2, db: Session = Depends(get_db)):
     # Validar que la fecha de inicio sea anterior a la fecha de fin
     if event.start_date >= event.end_date:
         raise HTTPException(status_code=400, detail="La fecha de inicio debe ser anterior a la fecha de fin")
